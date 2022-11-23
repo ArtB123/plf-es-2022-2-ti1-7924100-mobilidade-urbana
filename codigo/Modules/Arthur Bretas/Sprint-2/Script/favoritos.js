@@ -1,4 +1,4 @@
-import { database } from '../../../Guilherme Costa/Sprint-2 - Posição do onibus em tempo real/Scripts/index.js';
+import { database } from '../../../Guilherme Costa/Sprint-2/Scripts/index.js';
 
 function pesquisaDados() {
   let linhasDeOnibus = document.getElementById('input_linhaOnibus');
@@ -88,7 +88,18 @@ btn_favorito.addEventListener('click', () => {
     db_usuarios.usuarios[1].favoritos = novaListaFavoritos;
     // Salva no localStorage.
     localStorage.setItem('db_usuarios', JSON.stringify(db_usuarios));
-  } //todo: TEM QUE FAZER O ELSE, PARA ADICINAR O FAVORITO, SEGUINDO A MESMA LOGICA ACIMA
+  } else {
+    for (let i=0; i<database.length; i++){
+      if (inputLinha.value == database[i].linha){
+      novaListaFavoritos.push(database[i].linha);
+      console.log('deu certo');
+      }}
+    //Adicionar todos os favoritos já existentes à nova 
+    for (let i = 0; i < usuarioCorrente.favoritos.length; i++) { 
+        novaListaFavoritos.push(usuarioCorrente.favoritos[i]);
+    }
+
+}//todo: TEM QUE FAZER O ELSE, PARA ADICINAR O FAVORITO, SEGUINDO A MESMA LOGICA ACIMA
 });
 
 // Receber um parametro inicial quando pesquisar a linha (true ou false)
